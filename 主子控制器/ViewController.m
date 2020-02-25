@@ -10,14 +10,7 @@
 #import "OneViewController.h"
 #import "TwoViewController.h"
 #import "ThreeViewController.h"
-#import <MJRefresh/MJRefresh.h>
 #import "MainSubDefine.h"
-
-#define ScreenWidth [UIScreen mainScreen].bounds.size.width
-#define ScreenHeight [UIScreen mainScreen].bounds.size.height
-#define MinOffsetY -100
-#define MaxOffsetY -20
-#define DeltaOffsetY 80
 
 @interface ViewController ()
 <
@@ -73,16 +66,15 @@ ViewControllerScrollDelegate
 
 #pragma mark - ViewControllerScrollDelegate
 
-- (void)childScrollViewDidScroll:(UIScrollView *)scrollView {
-    
-    CGFloat offsetY = scrollView.contentOffset.y;
+- (void)childScrollViewDidScrollWithContentOffsetY:(CGFloat)offsetY {
+
     NSLog(@"%f", offsetY);
 
     if (offsetY <= MinOffsetY && self.blueView.mj_y != 0) {
         self.blueView.mj_y = 0;
         return;
     }
-    
+
     if (offsetY >= MaxOffsetY && self.blueView.mj_y != -DeltaOffsetY) {
         self.blueView.mj_y = -DeltaOffsetY;
         return;
@@ -92,10 +84,10 @@ ViewControllerScrollDelegate
     if (delta > 0 && delta < DeltaOffsetY) {
         self.blueView.mj_y = -delta;
     }
-    
+
     if (offsetY <= MaxOffsetY) {
         for (id<UIViewControllerProtocol> vc in self.viewControllers) {
-            [vc updateContentOffset:scrollView.contentOffset];
+            [vc updateContentOffset:CGPointMake(0, offsetY)];
         }
     } else if (offsetY > MaxOffsetY) {
         for (id<UIViewControllerProtocol> vc in self.viewControllers) {
@@ -105,9 +97,6 @@ ViewControllerScrollDelegate
         }
     }
 }
-
-
-#pragma mark - UIScrollViewDelegate
 
 
 #pragma mark - Lazy load

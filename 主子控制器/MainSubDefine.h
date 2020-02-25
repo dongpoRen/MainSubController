@@ -9,6 +9,17 @@
 #ifndef MainSubDefine_h
 #define MainSubDefine_h
 
+#import <MJRefresh/MJRefresh.h>
+
+#define ScreenWidth [UIScreen mainScreen].bounds.size.width
+#define ScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define MinOffsetY -100
+#define MaxOffsetY -20
+#define DeltaOffsetY 80
+
+
+
 @protocol UIViewControllerProtocol <NSObject>
 
 - (void)updateContentOffset:(CGPoint)offset;
@@ -18,7 +29,9 @@
 
 @protocol ViewControllerScrollDelegate <NSObject>
 
-- (void)childScrollViewDidScroll:(UIScrollView *)scrollView;
+- (void)childScrollViewDidScrollWithContentOffsetY:(CGFloat)offsetY;
+
+@optional
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
 
 @end

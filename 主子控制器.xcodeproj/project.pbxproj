@@ -17,6 +17,8 @@
 		7060682D240403280078BC3F /* OneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7060682C240403280078BC3F /* OneViewController.m */; };
 		70606830240403390078BC3F /* TwoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7060682F240403390078BC3F /* TwoViewController.m */; };
 		70606834240434770078BC3F /* ThreeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70606833240434770078BC3F /* ThreeViewController.m */; };
+		7060683924055F930078BC3F /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7060683824055F930078BC3F /* LeftViewController.m */; };
+		7060683C24055F9D0078BC3F /* RightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7060683B24055F9D0078BC3F /* RightViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +43,10 @@
 		70606831240426310078BC3F /* MainSubDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainSubDefine.h; sourceTree = "<group>"; };
 		70606832240434770078BC3F /* ThreeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreeViewController.h; sourceTree = "<group>"; };
 		70606833240434770078BC3F /* ThreeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreeViewController.m; sourceTree = "<group>"; };
+		7060683724055F930078BC3F /* LeftViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LeftViewController.h; sourceTree = "<group>"; };
+		7060683824055F930078BC3F /* LeftViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LeftViewController.m; sourceTree = "<group>"; };
+		7060683A24055F9D0078BC3F /* RightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RightViewController.h; sourceTree = "<group>"; };
+		7060683B24055F9D0078BC3F /* RightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RightViewController.m; sourceTree = "<group>"; };
 		C8CE25F8A881AA6AEF9F3441 /* Pods______.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods______.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -84,19 +90,15 @@
 		70606811240402BD0078BC3F /* 主子控制器 */ = {
 			isa = PBXGroup;
 			children = (
+				70606818240402BD0078BC3F /* ViewController.h */,
+				70606819240402BD0078BC3F /* ViewController.m */,
+				7060683524055F410078BC3F /* Level1 */,
+				7060683624055F740078BC3F /* Level2 */,
 				70606812240402BD0078BC3F /* AppDelegate.h */,
 				70606813240402BD0078BC3F /* AppDelegate.m */,
 				70606815240402BD0078BC3F /* SceneDelegate.h */,
 				70606816240402BD0078BC3F /* SceneDelegate.m */,
 				70606831240426310078BC3F /* MainSubDefine.h */,
-				70606818240402BD0078BC3F /* ViewController.h */,
-				70606819240402BD0078BC3F /* ViewController.m */,
-				7060682B240403280078BC3F /* OneViewController.h */,
-				7060682C240403280078BC3F /* OneViewController.m */,
-				7060682E240403390078BC3F /* TwoViewController.h */,
-				7060682F240403390078BC3F /* TwoViewController.m */,
-				70606832240434770078BC3F /* ThreeViewController.h */,
-				70606833240434770078BC3F /* ThreeViewController.m */,
 				7060681B240402BD0078BC3F /* Main.storyboard */,
 				7060681E240402C30078BC3F /* Assets.xcassets */,
 				70606820240402C30078BC3F /* LaunchScreen.storyboard */,
@@ -104,6 +106,30 @@
 				70606824240402C30078BC3F /* main.m */,
 			);
 			path = "主子控制器";
+			sourceTree = "<group>";
+		};
+		7060683524055F410078BC3F /* Level1 */ = {
+			isa = PBXGroup;
+			children = (
+				7060682B240403280078BC3F /* OneViewController.h */,
+				7060682C240403280078BC3F /* OneViewController.m */,
+				7060682E240403390078BC3F /* TwoViewController.h */,
+				7060682F240403390078BC3F /* TwoViewController.m */,
+				70606832240434770078BC3F /* ThreeViewController.h */,
+				70606833240434770078BC3F /* ThreeViewController.m */,
+			);
+			path = Level1;
+			sourceTree = "<group>";
+		};
+		7060683624055F740078BC3F /* Level2 */ = {
+			isa = PBXGroup;
+			children = (
+				7060683724055F930078BC3F /* LeftViewController.h */,
+				7060683824055F930078BC3F /* LeftViewController.m */,
+				7060683A24055F9D0078BC3F /* RightViewController.h */,
+				7060683B24055F9D0078BC3F /* RightViewController.m */,
+			);
+			path = Level2;
 			sourceTree = "<group>";
 		};
 		B4EEF5EECCA5FCA2E648A325 /* Pods */ = {
@@ -230,9 +256,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				7060681A240402BD0078BC3F /* ViewController.m in Sources */,
+				7060683924055F930078BC3F /* LeftViewController.m in Sources */,
 				70606834240434770078BC3F /* ThreeViewController.m in Sources */,
 				7060682D240403280078BC3F /* OneViewController.m in Sources */,
 				70606814240402BD0078BC3F /* AppDelegate.m in Sources */,
+				7060683C24055F9D0078BC3F /* RightViewController.m in Sources */,
 				70606830240403390078BC3F /* TwoViewController.m in Sources */,
 				70606825240402C30078BC3F /* main.m in Sources */,
 				70606817240402BD0078BC3F /* SceneDelegate.m in Sources */,

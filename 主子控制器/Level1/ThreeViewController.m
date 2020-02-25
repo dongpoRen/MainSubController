@@ -49,8 +49,8 @@ UIViewControllerProtocol
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    if ([self.scrollViewDelegate respondsToSelector:@selector(childScrollViewDidScroll:)]) {
-        [self.scrollViewDelegate childScrollViewDidScroll:scrollView];
+    if ([self.scrollViewDelegate respondsToSelector:@selector(childScrollViewDidScrollWithContentOffsetY:)]) {
+        [self.scrollViewDelegate childScrollViewDidScrollWithContentOffsetY:scrollView.contentOffset.y];
     }
 }
 

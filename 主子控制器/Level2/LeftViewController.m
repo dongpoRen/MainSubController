@@ -1,14 +1,14 @@
 //
-//  TwoViewController.m
+//  LeftViewController.m
 //  主子控制器
 //
-//  Created by SuShi on 2020/2/24.
+//  Created by SuShi on 2020/2/25.
 //  Copyright © 2020 SuShi. All rights reserved.
 //
 
-#import "TwoViewController.h"
+#import "LeftViewController.h"
 
-@interface TwoViewController ()
+@interface LeftViewController ()
 <
 UITableViewDataSource,
 UITableViewDelegate,
@@ -19,7 +19,7 @@ UIViewControllerProtocol
 
 @end
 
-@implementation TwoViewController
+@implementation LeftViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,11 +36,12 @@ UIViewControllerProtocol
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellTwo"];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellLeft"];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellLeft"];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Two-第%ld行", indexPath.row];
+    cell.textLabel.text = [NSString stringWithFormat:@"Left-第%ld行", indexPath.row];
+    cell.contentView.backgroundColor = [UIColor redColor];
     
     return cell;
 }
@@ -49,8 +50,8 @@ UIViewControllerProtocol
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    if ([self.scrollViewDelegate respondsToSelector:@selector(childScrollViewDidScroll:)]) {
-        [self.scrollViewDelegate childScrollViewDidScroll:scrollView];
+    if ([self.scrollViewDelegate respondsToSelector:@selector(childScrollViewDidScrollWithContentOffsetY:)]) {
+        [self.scrollViewDelegate childScrollViewDidScrollWithContentOffsetY:scrollView.contentOffset.y];
     }
 }
 
@@ -79,10 +80,11 @@ UIViewControllerProtocol
     if (!_tableView) {
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        _tableView.contentInset = UIEdgeInsetsMake(100, 0, 0, 0);
+        _tableView.contentInset = UIEdgeInsetsMake(100 + 30, 0, 0, 0);
         _tableView.dataSource = self;
         _tableView.delegate = self;
     }
     return _tableView;
 }
+
 @end
