@@ -31,6 +31,8 @@
 
 - (void)childScrollViewDidScrollWithContentOffsetY:(CGFloat)offsetY;
 
+- (void)childScrollViewWillBeginDragging:(UIScrollView *)scrollView;
+
 @optional
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
 

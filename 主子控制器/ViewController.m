@@ -17,10 +17,14 @@
 ViewControllerScrollDelegate
 >
 
+@property (nonatomic, strong) UIView *purpleView;
 @property (nonatomic, strong) UIView *blueView;
 @property (nonatomic, strong) UIScrollView *contentScrollView;
 
 @property (nonatomic, strong) NSArray<UIViewController *> *viewControllers;
+
+@property (nonatomic, assign) CGFloat lastOffsetY;
+@property (nonatomic, assign) CGFloat previewOffsetY;
 
 @end
 
@@ -39,6 +43,7 @@ ViewControllerScrollDelegate
     
     self.view.backgroundColor = [UIColor greenColor];
     [self.view addSubview:self.blueView];
+    [self.blueView addSubview:self.purpleView];
     [self.view insertSubview:self.contentScrollView belowSubview:self.blueView];
 }
 
@@ -61,7 +66,7 @@ ViewControllerScrollDelegate
     [self.contentScrollView addSubview:threeVC.view];
     [self addChildViewController:threeVC];
     
-    self.viewControllers = @[oneVC, twoVC, threeVC];
+    self.viewControllers = @[twoVC, threeVC];
 }
 
 #pragma mark - ViewControllerScrollDelegate
@@ -69,15 +74,21 @@ ViewControllerScrollDelegate
 - (void)childScrollViewDidScrollWithContentOffsetY:(CGFloat)offsetY {
 
     NSLog(@"%f", offsetY);
-
+    
+    BOOL isUp = NO;
+    
+    if (offsetY > _lastOffsetY) {
+        isUp = YES;
+    } else {
+        isUp = NO;
+    }
+    
     if (offsetY <= MinOffsetY && self.blueView.mj_y != 0) {
         self.blueView.mj_y = 0;
-        return;
     }
 
     if (offsetY >= MaxOffsetY && self.blueView.mj_y != -DeltaOffsetY) {
         self.blueView.mj_y = -DeltaOffsetY;
-        return;
     }
 
     CGFloat delta = offsetY - MinOffsetY;
@@ -87,6 +98,7 @@ ViewControllerScrollDelegate
 
     if (offsetY <= MaxOffsetY) {
         for (id<UIViewControllerProtocol> vc in self.viewControllers) {
+            if ([vc getContentOffsetY] > MaxOffsetY) return;
             [vc updateContentOffset:CGPointMake(0, offsetY)];
         }
     } else if (offsetY > MaxOffsetY) {
@@ -96,6 +108,16 @@ ViewControllerScrollDelegate
             }
         }
     }
+    
+    _lastOffsetY = offsetY;
+}
+
+- (void)childScrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    
+    CGFloat offsetY = scrollView.contentOffset.y;
+    NSLog(@"开始拖拽%f", offsetY);
+    _previewOffsetY = offsetY;
+    _lastOffsetY = offsetY;
 }
 
 
@@ -108,6 +130,15 @@ ViewControllerScrollDelegate
         _blueView.backgroundColor = [UIColor blueColor];
     }
     return _blueView;
+}
+
+- (UIView *)purpleView {
+    
+    if(!_purpleView) {
+        _purpleView = [[UIView alloc] initWithFrame:CGRectMake(0, 80, ScreenWidth, 20)];
+        _purpleView.backgroundColor = [UIColor purpleColor];
+    }
+    return _purpleView;
 }
 
 - (UIScrollView *)contentScrollView {
